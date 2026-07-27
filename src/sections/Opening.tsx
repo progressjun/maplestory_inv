@@ -1,8 +1,8 @@
 import { forwardRef, useEffect, useRef, useState } from "react";
 import { wedding } from "../config/wedding";
 import { GroomChar, BrideChar } from "../components/Characters";
-import { Cloud, Heart, Star, Hills } from "../components/Scenery";
-import { DriftingClouds } from "../components/Particles";
+import { Heart, Star } from "../components/Scenery";
+import { ToyTownScene } from "../components/ToyTown";
 import { useReducedMotion } from "../hooks/useReducedMotion";
 import { hasValue, cx } from "../lib/utils";
 
@@ -63,19 +63,22 @@ export default function Opening({ onEnter }: { onEnter: () => void }) {
   };
 
   const walk = play && !reduced;
+  const gInit = wedding.groom.name.trim().charAt(0) || "♥";
+  const bInit = wedding.bride.name.trim().charAt(0) || "★";
 
   return (
     <header
       className="relative flex min-h-[100svh] flex-col items-center overflow-hidden"
       style={{
         paddingTop: "calc(env(safe-area-inset-top,0px) + 8px)",
-        background: "linear-gradient(180deg,#bfe3ff 0%,#dcefff 40%,#eafaf0 100%)",
+        background: "linear-gradient(180deg,#c3b8ff 0%,#dcc9ff 42%,#ffd6ec 74%,#ffe8d6 100%)",
       }}
     >
-      <DriftingClouds />
-      <Star className="absolute left-6 top-24 w-6 animate-twinkle" />
-      <Star className="absolute right-8 top-32 w-4 animate-twinkle" />
-      <Cloud className="absolute left-2 top-16 w-24 opacity-90" />
+      {/* 루디브리엄풍 장난감 마을 맵 (오리지널) */}
+      <ToyTownScene
+        className="pointer-events-none absolute inset-0 h-full w-full"
+        initials={[gInit, bInit]}
+      />
 
       {/* 상단 로고형 제목 */}
       <div className="relative z-10 mt-2 flex flex-col items-center px-6 text-center">
@@ -124,11 +127,6 @@ export default function Opening({ onEnter }: { onEnter: () => void }) {
             </div>
             {/* 만남의 순간 하트/반짝이 */}
             {walk && <MeetSparkles />}
-            {/* 중앙 꽃길/다리 */}
-            <div className="absolute bottom-6 left-1/2 h-2.5 w-40 -translate-x-1/2 rounded-full bg-maple-woodlight" />
-            <div className="absolute bottom-[52px] left-1/2 -translate-x-1/2 text-[13px]" aria-hidden>
-              🌷🌼🌷
-            </div>
           </div>
         )}
       </div>
@@ -159,8 +157,6 @@ export default function Opening({ onEnter }: { onEnter: () => void }) {
         )}
       </div>
 
-      {/* 하단 언덕 */}
-      <Hills className="pointer-events-none absolute inset-x-0 bottom-0 h-16 w-full" />
     </header>
   );
 }

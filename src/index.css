@@ -120,6 +120,31 @@ body {
   }
 }
 
+/* 장난감 마을(ToyTown) 씬용 키프레임 */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes tt-tw {
+  0%,
+  100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+@keyframes tt-bob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
 /* 모션 최소화 설정 존중 */
 @media (prefers-reduced-motion: reduce) {
   *,
