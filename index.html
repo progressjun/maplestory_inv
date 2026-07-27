@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <!-- viewport-fit=cover : 아이폰 노치/하단 Safe Area 대응 -->
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
+    />
+    <meta name="theme-color" content="#bfe3ff" />
+    <meta name="format-detection" content="telephone=no" />
+
+    <!-- SEO / 공유 미리보기 : 값은 src/config/wedding.ts 에서 관리, index 는 기본값 -->
+    <title>한준희 ♥ 강다희 결혼합니다</title>
+    <meta name="description" content="서로 다른 길을 걷던 두 사람이 만나 새로운 모험을 시작합니다. 저희의 결혼식에 초대합니다." />
+
+    <!-- Open Graph (카카오톡/네이버 공유) — 이미지 교체 위치: /public/assets/og-image.png -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="한준희 ♥ 강다희 결혼합니다" />
+    <meta property="og:description" content="서로 다른 길을 걷던 두 사람이 만나 새로운 모험을 시작합니다. 저희의 결혼식에 초대합니다." />
+    <meta property="og:image" content="/assets/og-image.png" />
+    <meta property="twitter:card" content="summary_large_image" />
+
+    <!-- 본문용 현대식 한글 폰트 (Pretendard, OFL) -->
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css"
+    />
+    <!-- 장식용 픽셀 감성 한글 폰트 (Galmuri, OFL) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/quiple/galmuri/dist/galmuri.css" />
+  </head>
+  <body>
+    <div id="root"></div>
+    <noscript>이 청첩장을 보려면 자바스크립트를 켜주세요.</noscript>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

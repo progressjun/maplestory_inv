@@ -1,0 +1,137 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --app-max: 480px;
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  /* 가로 스크롤 완전 차단 */
+  overflow-x: hidden;
+  width: 100%;
+}
+
+body {
+  font-family: theme("fontFamily.sans");
+  color: theme("colors.maple.ink");
+  /* PC 배경: 흐릿한 판타지 하늘 */
+  background: linear-gradient(180deg, #a9d8ff 0%, #cfe9ff 40%, #e7d6ff 100%);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  min-height: 100dvh;
+}
+
+/* PC 에서 뒤 배경을 부드럽게 흐리는 데코 레이어 */
+.pc-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(60px 60px at 20% 30%, rgba(255, 255, 255, 0.9), transparent 70%),
+    radial-gradient(90px 90px at 70% 20%, rgba(255, 255, 255, 0.8), transparent 70%),
+    radial-gradient(70px 70px at 85% 55%, rgba(255, 255, 255, 0.7), transparent 70%),
+    radial-gradient(120px 120px at 35% 70%, rgba(255, 255, 255, 0.6), transparent 70%);
+  filter: blur(2px);
+  opacity: 0.7;
+}
+
+/* 픽셀 요소는 선명하게 스케일 */
+.pixelated {
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
+/* 커스텀 스크롤바 (데스크톱) */
+@media (min-width: 481px) {
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #b79bff;
+    border-radius: 999px;
+    border: 2px solid #e7d6ff;
+  }
+}
+
+/* 대화창(게임 UI) 프레임 */
+.dialog {
+  position: relative;
+  background: theme("colors.maple.parchment");
+  border: 3px solid theme("colors.maple.wooddark");
+  border-radius: 18px;
+  box-shadow:
+    0 4px 0 0 rgba(91, 70, 54, 0.25),
+    inset 0 0 0 3px rgba(255, 255, 255, 0.55);
+}
+
+/* 픽셀 테두리 버튼 */
+.btn-pixel {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 44px; /* 최소 터치 영역 */
+  padding: 0 16px;
+  border-radius: 12px;
+  border: 3px solid theme("colors.maple.wooddark");
+  font-weight: 700;
+  box-shadow: 0 3px 0 0 rgba(91, 70, 54, 0.35);
+  transition: transform 0.08s ease, box-shadow 0.08s ease, filter 0.12s ease;
+  user-select: none;
+}
+.btn-pixel:active {
+  transform: translateY(3px);
+  box-shadow: 0 0 0 0 rgba(91, 70, 54, 0.35);
+}
+.btn-pixel:focus-visible {
+  outline: 3px solid theme("colors.maple.purple");
+  outline-offset: 2px;
+}
+
+/* 잔디 언덕 상단 물결 */
+.hill-top {
+  border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+}
+
+/* 스크롤 등장 애니메이션 대상 초기 상태 */
+.reveal-init {
+  opacity: 0;
+  transform: translateY(24px);
+}
+.reveal-in {
+  animation: revealAnim 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+@keyframes revealAnim {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 모션 최소화 설정 존중 */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal-init {
+    opacity: 1;
+    transform: none;
+  }
+}
