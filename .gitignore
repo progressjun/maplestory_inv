@@ -26,3 +26,11 @@ pnpm-debug.log*
 *.njsproj
 *.sln
 *.sw?
+# Prevent accidental credential commits
+.env
+.env.*
+!.env.example
+!.env.*.example
+.dev.vars
+.dev.vars.*
+!.dev.vars.example
